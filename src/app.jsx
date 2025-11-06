@@ -1,7 +1,10 @@
 import React from "react";
+import './css/app.css';
+import './css/style.css';
 import { App, Panel, View } from "framework7-react";
 import routes from "./routes.js";
 import store from "./store.js";
+import PanelLeft from "./pages/PanelLeft.jsx"
 
 export default () => {
   // let theme = 'aurora';
@@ -15,18 +18,17 @@ export default () => {
       theme="md"
       routes={routes}
       store={store}
+      panel={{ leftBreakpoint: 960 }}  // <-- ESTA ES LA CLAVE
       popup={{ closeOnEscape: true }}
       sheet={{ closeOnEscape: true }}
       popover={{ closeOnEscape: true }}
       actions={{ closeOnEscape: true }}
     >
+      {/* Panel Izquierdo */}
       <Panel left cover resizable>
-        <View url="/panel-left/" linksView=".view-main" />
+        <PanelLeft /> 
       </Panel>
-      <Panel right reveal resizable>
-        <View url="/panel-right/" />
-      </Panel>
-      <View url="/" main className="safe-areas" masterDetailBreakpoint={768} />
+      <View id="main-view" url="/" main className="safe-areas" masterDetailBreakpoint={768} />
     </App>
   );
 };

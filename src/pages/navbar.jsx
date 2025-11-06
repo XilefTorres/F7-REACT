@@ -1,22 +1,62 @@
-import React from 'react';
-import { Navbar, Page, Block, List, ListItem, NavRight, Link } from 'framework7-react';
+import React, { useEffect, useState, useRef } from "react";
+import {
+  Navbar,
+  NavRight,
+  NavLeft,
+  NavTitle,
+  Link,
+  Button,
+  Popup,
+} from "framework7-react";
 
-export default () => (
-  <Page>
-    <Navbar title="Navbar" subtitle="Subtitle" backLink="Back">
-      <NavRight>
-        <Link>Right</Link>
-      </NavRight>
-    </Navbar>
-    <Block>
-      <p>
-        Navbar is a fixed (with Fixed and Through layout types) area at the top of a screen that
-        contains Page title and navigation elements.
-      </p>
-      <p>Navbar has 3 main parts: Left, Title and Right. Each part may contain any HTML content.</p>
-    </Block>
-    <List>
-      <ListItem link="/navbar-hide-scroll/" title="Hide Navbar On Scroll"></ListItem>
-    </List>
-  </Page>
-);
+export default (props) => {
+  const newLeands = useRef(null);
+  const [closePopupRef, setClosePopupRef] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 1024); // Estado para el tamaño de la pantalla
+
+  const addLeads = () => {
+    setClosePopupRef(false);
+    newLeands.current.open();
+  };
+
+  const closePopup = () => {
+    setClosePopupRef(true);
+    newLeands.current.close();
+  };
+
+  // Manejar el cambio de tamaño de la ventana
+  useEffect(() => {
+    const handleResize = () => {
+      setIsSmallScreen(window.innerWidth < 1024);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Limpieza del evento al desmontar el componente
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  return (
+    <>
+      <Navbar>
+        {isSmallScreen && ( // Mostrar NavLeft solo si la pantalla es menor a 1024px
+          <>
+            <NavLeft>
+              <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left" />
+            </NavLeft>
+            <NavTitle className="logoAside logo-header-root">
+              <img src="images/circulo_inmobiliario.jfif" />
+            </NavTitle>
+          </>
+        )}
+        <NavRight className="right-section-navbar">
+          <Link panelOpen="left" className="iconProfileHeader">
+            X
+          </Link>
+        </NavRight>
+      </Navbar>
+    </>
+  );
+};

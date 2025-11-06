@@ -1,0 +1,1 @@
+export const api_url = "https://circulo-inmobiliario.ahome.com.mx/api/?";

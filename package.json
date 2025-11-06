@@ -10,8 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hugeicons/core-free-icons": "^1.2.1",
+    "@hugeicons/react": "^1.1.1",
     "framework7": "^7.1.5",
     "framework7-react": "^7.1.5",
+    "jquery": "^3.7.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
