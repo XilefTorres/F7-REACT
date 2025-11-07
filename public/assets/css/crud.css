@@ -18,6 +18,10 @@
     /* --f7-button-pressed-bg-color:rgba(255,255,255,.3); */
     /* --f7-navbar-large-title-text-color:#a12244; */
 }
+.dark:root{
+    --f7-button-text-color: #da315e;
+    /*--f7-theme-color */
+}
 :root:not(.dark){
     --f7-page-bg-color: #f8f9fa;
 }
