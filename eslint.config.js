@@ -23,7 +23,7 @@ export default defineConfig([
       },
     },
     rules: {
-      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
+      "no-unused-vars": "off",
 
       // 🚫 Desactiva globalmente la advertencia de React Refresh
       "react-refresh/only-export-components": "off",

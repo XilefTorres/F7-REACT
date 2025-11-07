@@ -1,0 +1,27 @@
+
+.image-cell > a{
+    position: absolute!important;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.button{
+    text-transform: unset!important;
+    letter-spacing: -0.3px!important;
+}
+.w150-cell{
+    min-width: 150px;
+}
+
+.w100-cell{
+    min-width: 100px;
+}
+.w120-cell{
+    min-width: 120px;
+}
+.w80-cell{
+    min-width: 80px;
+}
+.w60-cell{
+    min-width: 60px;
+}
+.searchWrap{}
