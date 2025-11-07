@@ -25,8 +25,8 @@ export default () => {
       actions={{ closeOnEscape: true }}
     >
       {/* Panel Izquierdo */}
-      <Panel left cover resizable>
-        <PanelLeft /> 
+      <Panel left cover className="panel-left-persistent">
+        <PanelLeft/> 
       </Panel>
       <View id="main-view" url="/" main className="safe-areas" masterDetailBreakpoint={768} />
     </App>

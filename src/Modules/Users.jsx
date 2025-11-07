@@ -197,7 +197,7 @@ export default () => {
     <>
       <NavBar />
       <Page>
-        <>
+        <div className="users-page">
           <div className="header-users">
             <div className="header-left">
               <h1>Usuarios</h1>
@@ -212,7 +212,7 @@ export default () => {
             <div>
               <Button className="add-user-btn" popupOpen=".demo-popup-swipe">
                 <Icon material="person_add" style={{marginRight: "7px"}}></Icon>
-                Agregar usuario
+                Agregar
               </Button>
             </div>
           </div>
@@ -238,10 +238,47 @@ export default () => {
               <ListItem title="Acura"></ListItem>
               <ListItem title="Audi"></ListItem>
               <ListItem title="BMW"></ListItem>
+              <ListItem title="Cadillac "></ListItem>
+              <ListItem title="Chevrolet "></ListItem>
+              <ListItem title="Chrysler "></ListItem>
+              <ListItem title="Dodge "></ListItem>
+              <ListItem title="Ferrari "></ListItem>
+              <ListItem title="Ford "></ListItem>
+              <ListItem title="GMC "></ListItem>
+              <ListItem title="Honda"></ListItem>
+              <ListItem title="Hummer"></ListItem>
+              <ListItem title="Hyundai"></ListItem>
+              <ListItem title="Infiniti "></ListItem>
+              <ListItem title="Isuzu "></ListItem>
+              <ListItem title="Jaguar "></ListItem>
+              <ListItem title="Jeep "></ListItem>
+              <ListItem title="Kia"></ListItem>
+              <ListItem title="Lamborghini "></ListItem>
+              <ListItem title="Land Rover"></ListItem>
+              <ListItem title="Lexus "></ListItem>
+              <ListItem title="Lincoln "></ListItem>
+              <ListItem title="Lotus "></ListItem>
+              <ListItem title="Mazda"></ListItem>
+              <ListItem title="Mercedes-Benz"></ListItem>
+              <ListItem title="Mercury "></ListItem>
+              <ListItem title="Mitsubishi"></ListItem>
+              <ListItem title="Nissan "></ListItem>
+              <ListItem title="Oldsmobile "></ListItem>
+              <ListItem title="Peugeot "></ListItem>
+              <ListItem title="Pontiac "></ListItem>
+              <ListItem title="Porsche"></ListItem>
+              <ListItem title="Regal"></ListItem>
+              <ListItem title="Saab "></ListItem>
+              <ListItem title="Saturn "></ListItem>
+              <ListItem title="Subaru "></ListItem>
+              <ListItem title="Suzuki "></ListItem>
+              <ListItem title="Toyota"></ListItem>
+              <ListItem title="Volkswagen"></ListItem>
+              <ListItem title="Volvo"></ListItem>
             </F7List>
           </div>
 
-        </>
+        </div>
         {!config.isLoading ? (
           <>
             {config.lists.users.length > 0 ? (

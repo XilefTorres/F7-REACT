@@ -43,7 +43,7 @@ export default function PanelLeftPage({ setIsLogged, company, getCompanies }) {
       <Page className="aside-page bg-white">
         <Navbar className="navbar-aside asideNavbar">
           <NavTitle className="logoAside">
-            <img src="images/circulo_inmobiliario.jfif" />
+            <img src="images/circulo_inmobiliario_light-removebg-preview.png" />
           </NavTitle>
         </Navbar>
 

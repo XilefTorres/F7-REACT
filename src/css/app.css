@@ -21,7 +21,7 @@
 
 /* Ocultar en móviles */
 .panel-left-persistent {
-    display: none;
+    transform: translateX(-100%);
 }
 
 .asideNavbar {
@@ -176,24 +176,6 @@ div.navbar>div>div.title {
     transform: scale(1.2);
     color: #25262b;
 }
-
-/* Mostrar siempre en pantallas grandes */
-@media (min-width: 1024px) {
-    .panel-left-persistent {
-        display: block !important;
-        transform: translate3d(0, 0, 0) !important;
-        width: 250px;
-        /* Ajusta el ancho según necesites */
-    }
-
-    /* Ajustar el contenido principal para que no quede cubierto */
-    #main-view {
-        margin-left: 250px;
-        /* Debe coincidir con el ancho del panel */
-    }
-
-}
-
 
 .boxed {
     max-width: 560px !important;
@@ -365,31 +347,7 @@ div.navbar>div>div.title {
     margin-bottom: 0px;
     height: auto;
 }
-@media (max-width: 800px) {
-    .table-control{
-        max-height: calc(100vh - 180px - env(safe-area-inset-bottom));
-    }
-}
-@media (max-width: 767px) {
-    html body .buttonTimeline{
-        margin-top: 50px!important;
-    }
-}
-@media (max-width: 629px) {
- 
-    .lead_deatils{
-        flex-direction: column!important;
-        align-items: center;
-    }
-    .lead_info, .lead_comments{
-        width: 100%!important;;
-    }
-    .lead_info{    height: auto!important;
-    padding-bottom: 0!important;}
-    .timelineDiv .accordion-item-content{
-        max-height: calc(100vh - 415px - env(safe-area-inset-bottom))!important;
-    }
-}
+
 .disabled_option{
     opacity: 0.5;
 }
@@ -1598,4 +1556,92 @@ cursor: grabbing;
 }
 .buttonTimeline svg path{
     color: white;
+}
+
+.users-page{
+    width: 50%;
+    min-width: 350px;
+    justify-self: center;
+}
+
+.search-list.searchbar-found{
+    height: 55vh;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+/* Por defecto (móvil): no agregar nada */
+.add-user-btn::after {
+  content: "";
+}
+
+/* Mostrar siempre en pantallas grandes */
+@media (min-width: 1024px) {
+    .panel-left-persistent {
+        display: block !important;
+        transform: translate3d(0, 0, 0) !important;
+        width: 250px;
+        /* Ajusta el ancho según necesites */
+    }
+
+    /* Ajustar el contenido principal para que no quede cubierto */
+    #main-view {
+        margin-left: 250px;
+        /* Debe coincidir con el ancho del panel */
+    }
+
+}
+@media (min-width: 800px) {
+  .add-user-btn::after {
+    content: " usuario";
+  }
+}
+@media (min-width: 490px){
+    .search-list.searchbar-found{
+        height: 68vh;
+        overflow: scroll;
+    }
+}
+
+@media (max-width: 1500px) {
+    .users-page{
+        width: 70%;
+        justify-self: center;
+    }
+}
+@media (max-width: 1300px) {
+    .users-page{
+        width: 80%;
+        justify-self: center;
+    }
+}
+@media (max-width: 1024px) {
+    .users-page{
+        width: 70%;
+        justify-self: center;
+    }
+}
+@media (max-width: 800px) {
+    .table-control{
+        max-height: calc(100vh - 180px - env(safe-area-inset-bottom));
+    }
+}
+@media (max-width: 767px) {
+    html body .buttonTimeline{
+        margin-top: 50px!important;
+    }
+}
+@media (max-width: 629px) {
+    .lead_deatils{
+        flex-direction: column!important;
+        align-items: center;
+    }
+    .lead_info, .lead_comments{
+        width: 100%!important;;
+    }
+    .lead_info{    height: auto!important;
+    padding-bottom: 0!important;}
+    .timelineDiv .accordion-item-content{
+        max-height: calc(100vh - 415px - env(safe-area-inset-bottom))!important;
+    }
 }

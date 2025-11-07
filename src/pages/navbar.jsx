@@ -47,7 +47,7 @@ export default (props) => {
               <Link iconIos="f7:menu" iconMd="material:menu" panelOpen="left" />
             </NavLeft>
             <NavTitle className="logoAside logo-header-root">
-              <img src="images/circulo_inmobiliario.jfif" />
+              <img src="images/circulo_inmobiliario_light-removebg-preview.png" />
             </NavTitle>
           </>
         )}
