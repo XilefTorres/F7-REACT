@@ -11,9 +11,23 @@
     --f7-theme-color-tint: #a12244;
     --f7-theme-color-rgb: 161, 34, 68;
     --f7-button-pressed-bg-color:#a12244;
+    /* --f7-touch-ripple-color: rgba(255,255,255,.3); */
+    /* --f7-link-highlight-color:rgba(255,255,255,.3); */
+    --f7-link-touch-ripple-color:rgba(255,255,255,.3);
+    /* --f7-button-text-color:rgba(255,255,255,.3); */
+    /* --f7-button-pressed-bg-color:rgba(255,255,255,.3); */
     /* --f7-navbar-large-title-text-color:#a12244; */
 }
+:root:not(.dark){
+    --f7-page-bg-color: #f8f9fa;
+}
+.dark .panel-left .page-content{
+    border-right: 1px solid #1b1b1b!important;
+}
 
+.panel-left .page-content:not(.dark){
+    border-right: 1px solid #f0f0f0;
+}
 ::-webkit-scrollbar-track{
 	border-radius: 2px;
 }
