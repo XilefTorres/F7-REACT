@@ -216,6 +216,8 @@ export default () => {
                                 <th className="label-cell mobile-only w120-cell">
                                   Solo Movil
                                 </th>
+                                <th className="label-cell">Estatus</th>
+
                                 <th></th>
                               </>
                             }
@@ -270,18 +272,41 @@ export default () => {
                               children={person.registered}
                             />
                             <td
+                              className="label-cell"
+                              children={
+                                <>
+                                  <F7.Chip
+                                    iconSize={18}
+                                    iconMaterial="check"
+                                    // iconMd="material:check"
+                                    text="Activo"
+                                    color="green"
+                                  />
+                                  {/* <F7.Chip
+                                    iconSize={18}
+                                    iconMaterial="close"
+                                    // iconMd="material:check"
+                                    text="Inactivo"
+                                    color="red"
+                                  /> */}
+                                </>
+                              }
+                            />
+                            <td
                               className="actions-cell"
                               children={
                                 <>
                                   <F7.Link
                                     tooltip="Editar Usuario"
                                     link
+                                    iconSize={26}
                                     iconMd="material:edit"
                                   />
 
                                   <F7.Link
                                     tooltip="Archivar Usuario"
                                     link
+                                    iconSize={26}
                                     iconColor="red"
                                     iconMd="material:inventory_2"
                                   />
