@@ -101,11 +101,11 @@ export default () => {
             />
 
             <F7.Searchbar
-              className="searchbar-users"
               placeholder="Buscar usuarios..."
+              className="searchbar-users"
+              searchContainer=".components-list"
+              searchIn="a"
               expandable
-              searchContainer=".search-list"
-              searchIn=".item-title"
             />
           </>
         }
@@ -114,12 +114,41 @@ export default () => {
         bottom
         children={
           <>
-            <F7.Link>Anterior</F7.Link>
-            <F7.Link popoverOpen=".popover-about">Siguiente</F7.Link>
+            <F7.Link
+              iconMd="material:keyboard_double_arrow_left"
+              rippleColor="white"
+              tooltip="Página anterior"
+            />
+            <div className="page-numbers">
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"1"} />
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"2"} />
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"3"} />
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"4"} />
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"5"} />
+              <F7.Link
+                rippleColor="white"
+                tooltip="Página 6"
+                children={"6"}
+                className="active-page-number"
+              />
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"7"} />
+              <F7.Link rippleColor="white" tooltip="Página 8" children={"8"} />
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"9"} />
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"10"} />
+              <F7.Link rippleColor="white" tooltip="Página 1" children={"11"} />
+            </div>
+            <F7.Link
+              iconMd="material:keyboard_double_arrow_right"
+              rippleColor="white"
+              tooltip="Página siguiente"
+            />
           </>
         }
       />
 
+      <F7.List className="searchbar-not-found">
+        <F7.ListItem title="Nothing found" />
+      </F7.List>
       <div
         className="data-table data-table-init card"
         children={
@@ -137,6 +166,7 @@ export default () => {
                           fill
                           link
                           iconMd="material:person_add"
+                          className="elevation-hover-6 elevation-pressed-1 elevation-transition"
                           text="Nuevo Usuario"
                         />
                       </>
@@ -153,31 +183,136 @@ export default () => {
                           iconMd="material:more_vert"
                           text="Más Opciones"
                         />
-                        <F7.Button
-                          link
+
+                        <F7.List
                           className="medium-only"
-                          iconMd="material:keyboard_arrow_down"
-                          text="Estatus"
+                          noChevron
+                          menuList
+                          children={
+                            <>
+                              <F7.ListItem
+                                smartSelect
+                                smartSelectParams={{
+                                  openIn: "popover",
+                                  on: {
+                                    closed: function (e) {},
+                                  },
+                                }}
+                                children={
+                                  <>
+                                    <F7.Icon
+                                      slot="media"
+                                      md="material:keyboard_arrow_down"
+                                    />
+                                    <span className="item-title">Estatus</span>
+                                    <select
+                                      multiple
+                                      // defaultValue={}
+                                    >
+                                      <optgroup label="Estatus">
+                                        <option value="LEADS">Activos</option>
+                                        <option value="PROJECTS">
+                                          Archivados
+                                        </option>
+                                      </optgroup>
+                                    </select>
+                                  </>
+                                }
+                              />
+                            </>
+                          }
                         />
-                        <F7.Button
-                          link
+
+                        <F7.List
                           className="medium-only"
-                          iconMd="material:keyboard_arrow_down"
-                          text="Columnas"
+                          noChevron
+                          menuList
+                          children={
+                            <>
+                              <F7.ListItem
+                                smartSelect
+                                smartSelectParams={{
+                                  openIn: "popover",
+                                  on: {
+                                    closed: function (e) {},
+                                  },
+                                }}
+                                children={
+                                  <>
+                                    <F7.Icon
+                                      slot="media"
+                                      md="material:keyboard_arrow_down"
+                                    />
+                                    <span className="item-title">Columnas</span>
+                                    <select
+                                      multiple
+                                      // defaultValue={}
+                                    >
+                                      <optgroup label="Columnas">
+                                        <option value="1">Foto</option>
+                                        <option value="2">Nombre</option>
+                                        <option value="3">Whatsapp</option>
+                                        <option value="4">Solo Pc</option>
+                                        <option value="5">Rol</option>
+                                        <option value="6">
+                                          Fecha Registro
+                                        </option>
+                                        <option value="7">Estatus</option>
+                                      </optgroup>
+                                    </select>
+                                  </>
+                                }
+                              />
+                            </>
+                          }
                         />
-                        <F7.Button
-                          link
+
+                        <F7.List
                           className="medium-only"
-                          iconMd="material:keyboard_arrow_down"
-                          text="Ordenar"
+                          noChevron
+                          menuList
+                          children={
+                            <>
+                              <F7.ListItem
+                                smartSelect
+                                smartSelectParams={{
+                                  openIn: "popover",
+                                  on: {
+                                    closed: function (e) {},
+                                  },
+                                }}
+                                children={
+                                  <>
+                                    <F7.Icon
+                                      slot="media"
+                                      md="material:keyboard_arrow_down"
+                                    />
+                                    <span className="item-title">Ordenar</span>
+                                    <select
+                                    // defaultValue={}
+                                    >
+                                      <optgroup label="Ordenar">
+                                        <option value="2">
+                                          Por Fecha Registro
+                                        </option>
+                                        <option value="1">Por Nombre</option>
+                                        <option value="7">Por Estatus</option>
+                                      </optgroup>
+                                    </select>
+                                  </>
+                                }
+                              />
+                            </>
+                          }
                         />
+
                         <F7.Button
                           outline
                           link
                           className="medium-only"
-                          iconMd="material:inventory_2"
-                          disabled
-                          text="Archivar"
+                          iconMd="material:cloud_download"
+                          // disabled
+                          text="Exportar CSV"
                         />
                       </>
                     }
@@ -226,6 +361,7 @@ export default () => {
                       />
 
                       <tbody
+                        className="components-list searchbar-found"
                         children={people.map((person, index) => (
                           <tr key={index}>
                             {/* Checkbox */}
@@ -243,7 +379,11 @@ export default () => {
                                 <F7.Link
                                   popoverOpen=".popover-about"
                                   children={
-                                    <img src={person.avatar} width="40" />
+                                    <img
+                                      className="elevation-5"
+                                      src={person.avatar}
+                                      width="40"
+                                    />
                                   }
                                 />
                               }
@@ -337,6 +477,61 @@ export default () => {
               </>
             }
           />
+        }
+      />
+
+      <F7.Popover
+        className="popover-options-more-actions"
+        children={
+          <>
+            <F7.List
+              children={
+                <>
+                  <F7.ListItem
+                    id="modulesUser"
+                    title="Apps asignadas:"
+                    smartSelect
+                    smartSelectParams={{
+                      openIn: "popover",
+                      on: {
+                        closed: function (e) {},
+                      },
+                    }}
+                  >
+                    <select
+                      multiple
+                      // defaultValue={}
+                    >
+                      <optgroup label="Estatus">
+                        <option value="LEADS">👤 Leads</option>
+                        <option value="PROJECTS">🗂️ Proyectos</option>
+                      </optgroup>
+                    </select>
+                  </F7.ListItem>
+                  <F7.ListItem
+                    title="Activos"
+                    popoverClose
+                    link
+                    children={
+                      <F7.Icon slot="media" md="material:done_outline" />
+                    }
+                  />
+                  <F7.ListItem
+                    title="Archivados"
+                    popoverClose
+                    link
+                    children={
+                      <F7.Icon
+                        color="red"
+                        slot="media"
+                        md="material:inventory_2"
+                      />
+                    }
+                  />
+                </>
+              }
+            />
+          </>
         }
       />
     </F7.Page>
