@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as F7 from "framework7-react";
+import { TOAST } from "@/utils/utils.js";
 
 import SmartSelectListItem from "../components/SmartSelectListItem.jsx";
 
@@ -113,6 +114,57 @@ export default () => {
     },
   ];
 
+  async function login(user, password, email, phone) {
+    console.log(user, password, email, phone)
+    if (!user || !password || !email || !phone) {
+      throw new Error("Todos los campos son obligatorios.");
+    }
+
+    try {
+      const response = await fetch("", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          user,
+          password,
+          email,
+          phone
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al iniciar sesión. Verifica tus datos.");
+      }
+
+      const data = await response.json();
+      return data;
+
+    } catch (error) {
+      console.error(error);
+      throw error;
+    }
+  }
+  
+  async function handleSubmit(e) {
+    e.preventDefault();
+
+    const form = document.querySelector('#user-form');
+    const formData = new FormData(form);
+    
+    const nombre = formData.get('name');
+    const contraseña = formData.get('password');
+    const correo = formData.get('email');
+    const telefono = formData.get('phone');
+    
+    try {
+      await login(nombre, contraseña, correo, telefono );
+    } catch (err) {
+      TOAST("Algo salió mal")
+    }
+  }
+
   return (
     <F7.Page>
       <F7.Navbar
@@ -142,7 +194,7 @@ export default () => {
               placeholder="Buscar usuarios..."
               className="searchbar-users"
               searchContainer=".components-list"
-              searchIn="a"
+              searchIn=".label-cell, .cell-id, .image-cell"
               expandable
             />
           </>
@@ -209,6 +261,7 @@ export default () => {
                           raised
                           fill
                           link
+                          popupOpen=".demo-popup-swipe"
                           iconMd="material:person_add"
                           className="elevation-hover-6 elevation-pressed-1 elevation-transition"
                           text="Nuevo Usuario"
@@ -554,6 +607,87 @@ export default () => {
           </F7.List>
         }
       />
+
+      <F7.Popup className="demo-popup-swipe" swipeToClose>
+          <F7.Page>
+            <F7.Navbar title="Agregar usuario" className="modal-title">
+              <F7.NavRight>
+                <F7.Link popupClose>Cerrar</F7.Link>
+              </F7.NavRight>
+            </F7.Navbar>
+
+            <F7.BlockTitle medium style={{justifySelf: "center", marginBottom: "-10px"}}>
+              Registra tu usuario
+            </F7.BlockTitle>
+            <div
+              className="display-flex justify-content-center"
+            >
+              <F7.List strongIos outlineIos dividersIos form formStoreData 
+                id="user-form" className="modal-form" onSubmit={handleSubmit}>
+                <F7.ListInput 
+                  label="Nombre" 
+                  name="name" 
+                  type="text" 
+                  clearButton 
+                  validate
+                  required
+                  floatingLabel={true}
+                  outline={true}
+                  placeholder="Su nombre" 
+                  ignoreStoreData/>
+                <F7.ListInput
+                  label="Contraseña"
+                  name="password"
+                  type="password"
+                  validate
+                  required
+                  floatingLabel={true}
+                  outline={true}
+                  minlength={6}
+                  placeholder="Su contraseña"
+                  ignoreStoreData
+                />
+                <F7.ListInput 
+                  label="Correo electronico" 
+                  name="email" 
+                  type="email" 
+                  clearButton
+                  validate
+                  required
+                  floatingLabel={true}
+                  outline={true}
+                  placeholder="Su correo electronico" 
+                  ignoreStoreData/>
+                <F7.ListInput
+                  label="Telefono"
+                  name="phone"
+                  type="tel"
+                  clearButton
+                  validate
+                  required
+                  floatingLabel={true}
+                  outline={true}
+                  maxlength={15}
+                  minlength={10}
+                  pattern="[0-9]*"
+                  placeholder="Numero telefonico"
+                  ignoreStoreData
+                />
+                <br />
+                <F7.Button
+                  raised
+                  fill
+                  link
+                  type="submit"
+                  popupOpen=".demo-popup-swipe"
+                  className="elevation-hover-6 elevation-pressed-1 elevation-transition"
+                  text="Guardar usuario"
+                />
+              </F7.List>
+            </div>
+
+          </F7.Page>
+        </F7.Popup>
     </F7.Page>
   );
 };
