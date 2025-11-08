@@ -13,13 +13,16 @@
     --f7-button-pressed-bg-color:rgba(161, 34, 68, .3);
     --f7-link-touch-ripple-color:rgba(161, 34, 68, .3);
     --f7-list-item-divider-text-color: rgba(255,255,255,.8);
+    --f7-table-selected-row-bg-color:rgba(128, 128, 128, 0.275);
     /* --f7-touch-ripple-color: rgba(255,255,255,.3); */
     /* --f7-link-highlight-color:rgba(255,255,255,.3); */
     /* --f7-button-text-color:rgba(255,255,255,.3); */
     /* --f7-button-pressed-bg-color:rgba(255,255,255,.3); */
     /* --f7-navbar-large-title-text-color:#a12244; */
 }
-
+td{
+    cursor: pointer;
+}
 .active-page-number{
     background-color: var(--f7-page-bg-color);
     color: var(--f7-theme-color)!important;
@@ -61,6 +64,10 @@ tbody td img{
     transition: transform .3s ease;
     border-radius: 5pt;
 }
+tbody tr:nth-child(odd) {
+    background: rgba(128, 128, 128, 0.1);
+}
+
 .item-link.smart-select{}
 .item-link.smart-select  i + span, .item-link.smart-select  span + span, .item-link.smart-select  span + i, .item-link.smart-select  i + i{
     margin-left: 4px;

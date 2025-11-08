@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as F7 from "framework7-react";
 
+import SmartSelectListItem from "../components/SmartSelectListItem.jsx";
+
 export default () => {
   const [people, setPeople] = useState([
     {
@@ -74,6 +76,42 @@ export default () => {
       avatar: "https://xsgames.co/randomusers/assets/avatars/male/6.jpg",
     },
   ]);
+
+  const estatusOptions = [
+    {
+      label: "Estatus",
+      items: [
+        { value: "LEADS", label: "Activos", selected: true },
+        { value: "PROJECTS", label: "Archivados" },
+      ],
+    },
+  ];
+
+  const columnasOptions = [
+    {
+      label: "Columnas",
+      items: [
+        { value: "1", label: "Foto" },
+        { value: "2", label: "Nombre" },
+        { value: "3", label: "Whatsapp" },
+        { value: "4", label: "Solo Pc" },
+        { value: "5", label: "Rol" },
+        { value: "6", label: "Fecha Registro" },
+        { value: "7", label: "Estatus" },
+      ],
+    },
+  ];
+
+  const ordenarOptions = [
+    {
+      label: "Ordenar",
+      items: [
+        { value: "2", label: "Por Fecha Registro" },
+        { value: "1", label: "Por Nombre" },
+        { value: "7", label: "Por Estatus" },
+      ],
+    },
+  ];
 
   return (
     <F7.Page>
@@ -182,6 +220,7 @@ export default () => {
                           className="mobile-only"
                           iconMd="material:more_vert"
                           text="Más Opciones"
+                          popoverOpen=".popover-more-actions-mobile"
                         />
 
                         <F7.List
@@ -190,34 +229,16 @@ export default () => {
                           menuList
                           children={
                             <>
-                              <F7.ListItem
-                                smartSelect
+                              <SmartSelectListItem
+                                title="Estatus"
+                                options={estatusOptions}
+                                multiple
                                 smartSelectParams={{
                                   openIn: "popover",
                                   on: {
                                     closed: function (e) {},
                                   },
                                 }}
-                                children={
-                                  <>
-                                    <F7.Icon
-                                      slot="media"
-                                      md="material:keyboard_arrow_down"
-                                    />
-                                    <span className="item-title">Estatus</span>
-                                    <select
-                                      multiple
-                                      // defaultValue={}
-                                    >
-                                      <optgroup label="Estatus">
-                                        <option value="LEADS">Activos</option>
-                                        <option value="PROJECTS">
-                                          Archivados
-                                        </option>
-                                      </optgroup>
-                                    </select>
-                                  </>
-                                }
                               />
                             </>
                           }
@@ -229,39 +250,16 @@ export default () => {
                           menuList
                           children={
                             <>
-                              <F7.ListItem
-                                smartSelect
+                              <SmartSelectListItem
+                                title="Columnas"
+                                options={columnasOptions}
+                                multiple
                                 smartSelectParams={{
                                   openIn: "popover",
                                   on: {
                                     closed: function (e) {},
                                   },
                                 }}
-                                children={
-                                  <>
-                                    <F7.Icon
-                                      slot="media"
-                                      md="material:keyboard_arrow_down"
-                                    />
-                                    <span className="item-title">Columnas</span>
-                                    <select
-                                      multiple
-                                      // defaultValue={}
-                                    >
-                                      <optgroup label="Columnas">
-                                        <option value="1">Foto</option>
-                                        <option value="2">Nombre</option>
-                                        <option value="3">Whatsapp</option>
-                                        <option value="4">Solo Pc</option>
-                                        <option value="5">Rol</option>
-                                        <option value="6">
-                                          Fecha Registro
-                                        </option>
-                                        <option value="7">Estatus</option>
-                                      </optgroup>
-                                    </select>
-                                  </>
-                                }
                               />
                             </>
                           }
@@ -273,34 +271,15 @@ export default () => {
                           menuList
                           children={
                             <>
-                              <F7.ListItem
-                                smartSelect
+                              <SmartSelectListItem
+                                title="Ordenar"
+                                options={ordenarOptions}
                                 smartSelectParams={{
                                   openIn: "popover",
                                   on: {
                                     closed: function (e) {},
                                   },
                                 }}
-                                children={
-                                  <>
-                                    <F7.Icon
-                                      slot="media"
-                                      md="material:keyboard_arrow_down"
-                                    />
-                                    <span className="item-title">Ordenar</span>
-                                    <select
-                                    // defaultValue={}
-                                    >
-                                      <optgroup label="Ordenar">
-                                        <option value="2">
-                                          Por Fecha Registro
-                                        </option>
-                                        <option value="1">Por Nombre</option>
-                                        <option value="7">Por Estatus</option>
-                                      </optgroup>
-                                    </select>
-                                  </>
-                                }
                               />
                             </>
                           }
@@ -353,7 +332,7 @@ export default () => {
                                 </th>
                                 <th className="label-cell">Estatus</th>
 
-                                <th></th>
+                                {/* <th></th> */}
                               </>
                             }
                           />
@@ -363,7 +342,21 @@ export default () => {
                       <tbody
                         className="components-list searchbar-found"
                         children={people.map((person, index) => (
-                          <tr key={index}>
+                          <tr
+                            key={index}
+                            onClick={(e) => {
+                              if (
+                                e.target.closest(".image-cell") ||
+                                e.target.closest(".checkbox-cell")
+                              ) {
+                                return;
+                              }
+                              F7.f7.popover.open(
+                                ".popover-actions-row",
+                                e.target
+                              );
+                            }}
+                          >
                             {/* Checkbox */}
                             <td className="checkbox-cell">
                               <label className="checkbox">
@@ -432,27 +425,6 @@ export default () => {
                                 </>
                               }
                             />
-                            <td
-                              className="actions-cell"
-                              children={
-                                <>
-                                  <F7.Link
-                                    tooltip="Editar Usuario"
-                                    link
-                                    iconSize={26}
-                                    iconMd="material:edit"
-                                  />
-
-                                  <F7.Link
-                                    tooltip="Archivar Usuario"
-                                    link
-                                    iconSize={26}
-                                    iconColor="red"
-                                    iconMd="material:inventory_2"
-                                  />
-                                </>
-                              }
-                            />
                           </tr>
                         ))}
                       />
@@ -477,6 +449,90 @@ export default () => {
               </>
             }
           />
+        }
+      />
+
+      <F7.Popover
+        className="popover-actions-row"
+        children={
+          <F7.List>
+            <li class="item-divider">#412 - Juan Pérez</li>
+            <F7.ListItem
+              title="Ver Usuario"
+              popoverClose
+              link
+              onClick={() => {}}
+              children={<F7.Icon slot="media" md="material:list_alt" />}
+            />
+            <F7.ListItem
+              title="Editar Usuario"
+              popoverClose
+              link
+              onClick={() => {}}
+              children={
+                <F7.Icon slot="media" md="material:drive_file_rename_outline" />
+              }
+            />
+            <F7.ListItem
+              title="Archivar Usuario"
+              popoverClose
+              link
+              onClick={() => {}}
+              children={<F7.Icon slot="media" md="material:inventory_2" />}
+            />
+            <F7.ListItem
+              textColor="red"
+              title="Eliminar Usuario"
+              popoverClose
+              link
+              onClick={() => {}}
+              children={<F7.Icon slot="media" md="material:delete_outline" />}
+            />
+          </F7.List>
+        }
+      />
+
+      <F7.Popover
+        className="popover-more-actions-mobile"
+        children={
+          <F7.List>
+            <li class="item-divider">Más Opciones</li>
+            <SmartSelectListItem
+              title="Estatus"
+              options={estatusOptions}
+              multiple
+              smartSelectParams={{
+                openIn: "popover",
+                on: {
+                  closed: function (e) {},
+                },
+              }}
+            />
+
+            <F7.ListItem
+              title="Ver Estatus"
+              popoverClose
+              link
+              onClick={() => {}}
+              children={<F7.Icon slot="media" md="material:visibility_off" />}
+            />
+            <F7.ListItem
+              title="Mostrar Columnas"
+              popoverClose
+              link
+              onClick={() => {}}
+              children={
+                <F7.Icon slot="media" md="material:calendar_view_week" />
+              }
+            />
+            <F7.ListItem
+              title="Tipos de Orden"
+              popoverClose
+              link
+              onClick={() => {}}
+              children={<F7.Icon slot="media" md="material:swap_vert" />}
+            />
+          </F7.List>
         }
       />
 
