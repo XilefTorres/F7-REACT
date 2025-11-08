@@ -160,8 +160,11 @@ export default () => {
             <div className="page-numbers">
               <F7.Link rippleColor="white" tooltip="Página 1" children={"1"} />
               <F7.Link rippleColor="white" tooltip="Página 1" children={"2"} />
-              <F7.Link rippleColor="white" tooltip="Página 1" children={"3"} />
-              <F7.Link rippleColor="white" tooltip="Página 1" children={"4"} />
+              <F7.Link
+                rippleColor="white"
+                tooltip="Página 1"
+                children={". . ."}
+              />
               <F7.Link rippleColor="white" tooltip="Página 1" children={"5"} />
               <F7.Link
                 rippleColor="white"
@@ -170,9 +173,12 @@ export default () => {
                 className="active-page-number"
               />
               <F7.Link rippleColor="white" tooltip="Página 1" children={"7"} />
+              <F7.Link
+                rippleColor="white"
+                tooltip="Página 1"
+                children={". . ."}
+              />
               <F7.Link rippleColor="white" tooltip="Página 8" children={"8"} />
-              <F7.Link rippleColor="white" tooltip="Página 1" children={"9"} />
-              <F7.Link rippleColor="white" tooltip="Página 1" children={"10"} />
               <F7.Link rippleColor="white" tooltip="Página 1" children={"11"} />
             </div>
             <F7.Link
@@ -310,7 +316,7 @@ export default () => {
                           <tr
                             children={
                               <>
-                                <th
+                                {/* <th
                                   className="checkbox-cell"
                                   children={
                                     <label className="checkbox">
@@ -318,7 +324,8 @@ export default () => {
                                       <i className="icon-checkbox"></i>
                                     </label>
                                   }
-                                />
+                                /> */}
+                                <th className="label-cell w60-cell">Folio</th>
                                 <th className="label-cell w60-cell">Foto</th>
                                 <th className="label-cell">Nombre</th>
                                 <th className="label-cell">Whatsapp</th>
@@ -358,14 +365,26 @@ export default () => {
                             }}
                           >
                             {/* Checkbox */}
-                            <td className="checkbox-cell">
+                            {/* <td className="checkbox-cell">
                               <label className="checkbox">
                                 <input type="checkbox" />
                                 <i className="icon-checkbox"></i>
                               </label>
-                            </td>
+                            </td> */}
 
                             {/* Image */}
+
+                            <td
+                              className="image-cell w60-cell cell-id"
+                              children={
+                                <F7.Chip
+                                  iconSize={18}
+                                  // iconMd="material:check"
+                                  text="# 431"
+                                  color="var(--f7-theme-color)"
+                                />
+                              }
+                            />
                             <td
                               className="image-cell w60-cell"
                               children={
@@ -533,61 +552,6 @@ export default () => {
               children={<F7.Icon slot="media" md="material:swap_vert" />}
             />
           </F7.List>
-        }
-      />
-
-      <F7.Popover
-        className="popover-options-more-actions"
-        children={
-          <>
-            <F7.List
-              children={
-                <>
-                  <F7.ListItem
-                    id="modulesUser"
-                    title="Apps asignadas:"
-                    smartSelect
-                    smartSelectParams={{
-                      openIn: "popover",
-                      on: {
-                        closed: function (e) {},
-                      },
-                    }}
-                  >
-                    <select
-                      multiple
-                      // defaultValue={}
-                    >
-                      <optgroup label="Estatus">
-                        <option value="LEADS">👤 Leads</option>
-                        <option value="PROJECTS">🗂️ Proyectos</option>
-                      </optgroup>
-                    </select>
-                  </F7.ListItem>
-                  <F7.ListItem
-                    title="Activos"
-                    popoverClose
-                    link
-                    children={
-                      <F7.Icon slot="media" md="material:done_outline" />
-                    }
-                  />
-                  <F7.ListItem
-                    title="Archivados"
-                    popoverClose
-                    link
-                    children={
-                      <F7.Icon
-                        color="red"
-                        slot="media"
-                        md="material:inventory_2"
-                      />
-                    }
-                  />
-                </>
-              }
-            />
-          </>
         }
       />
     </F7.Page>

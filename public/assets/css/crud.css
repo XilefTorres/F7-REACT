@@ -23,6 +23,12 @@
 td{
     cursor: pointer;
 }
+.cell-id{
+    padding-right: 0px!important;
+}
+.cell-id *{
+    font-weight: 500!important;
+}
 .active-page-number{
     background-color: var(--f7-page-bg-color);
     color: var(--f7-theme-color)!important;
